@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>天气预报</title>
+		<style type="text/css">
+			.bigbox{width: 1000px;height: 600px;margin: 0 auto;position: relative;}
+			.cityImg{width: 100%;height: 100%;}
+			.leftBox{
+				width: 400px;height: 400px;background-color: #FFFFFF;opacity: 0.5;
+			    position: absolute;left: 100px;top: 60px;
+			}
+			.rightBox{
+				width: 300px;height: 300px;background-color: #FFFFFF;opacity: 0.5;
+			    position: absolute;right: 100px;top: 60px;
+			}
+			.cityIpt{
+				width: 140px;height: 34px;border-radius:10px;position: absolute;right: 250px;
+			    bottom: 150px;border: none;text-align:center;
+			    font-size:20px;line-height:34px;font-weight:900;
+			}
+			.ask{
+				width: 50px;height: 35px;background-color: #FFFFFF;position: absolute;
+				right: 170px;bottom: 150px;border-radius:10px;text-align: center;
+				font-weight: 900;font-size: 20px;line-height: 35px;
+				transition: all 0.5s ease 0s;
+			}
+			.ask:hover{background-color: #000000;color: #FFFFFF;}
+			.typeText{position: absolute;right: 30px;top: 60px;font-size: 50px;}
+			.typeImg{
+				width: 100px;height: 80px;position: absolute;left: 40px;top: 30px;
+			}
+			.wind{
+				font-size: 20px;position: absolute;right: 30px;top: 140px;
+			}
+			.wendu{
+				font-size: 20px;position: absolute;right: 30px;top:180px;
+			}
+			.nowWendu{
+				font-size: 50px;position: absolute;left: 20px;bottom: 70px;
+			}
+			.future{
+				width: 100%;height: 80px;text-align: center;line-height: 80px;
+				font-weight:900 ; font-size: 18px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bigbox">
+			<img src="img/yinxlm/bg.jpg" class="cityImg" id="cityImg"/>
+			<div class="leftBox" id="leftBox">	</div>
+			<div class="rightBox">
+				<div class="typeText" id="typeText"></div>
+				<img class="typeImg" id="typeImg"/>
+				<div class="wind" id="wind"></div>
+				<div class="wendu" id="wendu"></div>
+				<div class="nowWendu" id="nowWendu"></div>
+				
+			</div>
+			<input type="text" class="cityIpt" id="cityIpt"/>
+			<div class="ask" id="ask">查询</div>
+		</div>
+		<script type="text/javascript">
+			let typeText=document.getElementById('typeText');
+			let nowWendu=document.getElementById('nowWendu');
+			let wendu=document.getElementById('wendu');
+			let wind=document.getElementById('wind');
+			let typeImg=document.getElementById('typeImg');
+			let leftBox=document.getElementById('leftBox');
+			let cityIpt=document.getElementById('cityIpt');
+			let ask=document.getElementById('ask');
+			let cityImg=document.getElementById('cityImg');
+			let typeImages={
+				晴:'img/天气/qingtian.png',
+				多云:'img/天气/duoyun.png',
+				阴:'img/天气/yintian.png',
+				小雨:'img/天气/xiaoyu.png',
+				小雪:'img/天气/xiaoxue.png'
+			};
+			let cityImages={
+				北京:'img/天气/beijing.jpg',
+				成都:'img/天气/chengdu.jpg',
+				重庆:'img/天气/chongqing.jpg',
+				广州:'img/天气/guangzhou.jpg',
+				杭州:'img/天气/hangzhou.jpg',
+				南京:'img/天气/najing.jpg',
+				上海:'img/天气/shanghai.jpg',
+				天津:'img/天气/shenzhen.jpg',
+				苏州:'img/天气/suzhou.jpg',
+				深圳:'img/天气/tianjin.jpg',
+				武汉:'img/天气/wuhan.jpg',
+				东莞:'img/dongguan.jpg'
+			};
+			let data='';	
+			ask.onclick=function(){
+				let req=new XMLHttpRequest();
+				req.open('GET','https://www.apiopen.top/weatherApi?city='+cityIpt.value,true);
+				req.onreadystatechange=function(){
+					if(req.status==200&&req.readyState==4){
+						leftBox.innerHTML='';
+						data=JSON.parse(req.responseText);
+					    console.log(data);
+						typeText.innerHTML=data.data.forecast[0].type;
+						nowWendu.innerHTML=data.data.wendu+'°C';
+						wendu.innerHTML=data.data.forecast[0].low.split(' ')[1]+'-'+data.data.forecast[0].high.split(' ')[1];
+						wind.innerHTML=data.data.forecast[0].fengxiang+data.data.forecast[0].fengli.substring(9,data.data.forecast[0].fengli.length-3);
+						typeImg.src=typeImages[data.data.forecast[0].type];
+						for(let i=0;i<5;i++){
+							let future=document.createElement('div');
+							future.className='future';
+							future.innerHTML=data.data.forecast[i].date.substring(0,data.data.forecast[i].date.length-3)+'&ensp;周'+data.data.forecast[i].date.charAt(data.data.forecast[i].date.length-1)+'&ensp;'+data.data.forecast[i].fengxiang+data.data.forecast[i].fengli.substring(9,data.data.forecast[i].fengli.length-3)+'&ensp;'+data.data.forecast[i].low.split(' ')[1]+'-'+data.data.forecast[i].high.split(' ')[1]+'&ensp;'+data.data.forecast[i].type;
+					        leftBox.appendChild(future);
+						}     
+						cityImg.src=cityImages[data.data.city];
+					} 
+				}	
+		     req.send();		
+		
+	        }
+				
+	
+		</script>
+	</body>
+</html>

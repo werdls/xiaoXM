@@ -1,0 +1,302 @@
+.bigbox{
+	width: 900px;
+	height: 900px;
+	margin: 0 auto;
+}
+.box{
+	width: 300px;
+	height: 300px;
+	float: left;
+	overflow: hidden;
+	position: relative;
+}
+.box img{
+	width: 100%;
+	height: 100%;
+}
+.box1 img{
+	transform: all 2s cubic-bezier(0.74, 1.71, 0.05, 2.86) 0s;
+}
+.box1:hover img{
+	opacity: 0.5;
+	transform: translateX(30px);
+}
+.box1Text1{
+	position: absolute;
+	left: 80px;
+	top: 300px;
+	transition: all 0.3s ease 0s;
+	width: 300px; 
+}
+.box1:hover .box1Text1{
+	top: 120px;
+}
+.box1Text2{
+	position: absolute;
+	left: 300px;
+	top: 150px;
+	transition: all 0.2s ease 0s; 
+	width: 300px;
+}
+.box1:hover .box1Text2{
+	left: 80px;
+}
+.box1Text3{
+	position: absolute;
+	right: 300px;
+	top: 180px;
+	transition: all 0.3s ease 0s;
+	
+}
+.box1:hover .box1Text3{
+	right: 130px;
+}
+.box1Text4{
+	position: absolute;
+	left: 50px;
+	top: 40px;
+	transition: all 0.5s ease 0s;
+	font-size: 18px;
+	color: #fff;
+	
+}
+.box1:hover .box1Text4{
+	top: 80px;
+}
+.box2 img{
+	transform: scale(1.3,1.3);/*缩放*/
+	transition: all 0.5s ease 0s;
+}
+.box2:hover img{
+	opacity: 0.5;
+	transform: translateX(-30px)/*平移*/ scale(1.3,1.3);	
+}
+.box2Text1{
+	position: absolute;
+	left: -200px;
+	top: 120px;
+	transition: all 0.5s ease 0s;
+	width: 200px; 
+	background-color:#FFFFFF ;
+}
+.box2:hover .box2Text1{
+	left: 30px;
+}
+.box2Text2{
+	position: absolute;
+	left: -200px;
+	top: 150px;
+	transition: all 0.5s ease 0.2s;
+	width: 200px; 
+	background-color:#FFFFFF ;
+}
+.box2:hover .box2Text2{
+	left: 30px;
+}
+.box2Text3{
+	position: absolute;
+	left: -200px;
+	top: 180px;
+	transition: all 0.5s ease 0.3s;
+	width: 200px; 
+	background-color:#FFFFFF ;
+}
+.box2:hover .box2Text3{
+	left: 30px;
+}
+.box2Text4{
+	position: absolute;
+	left: -200px;
+	top: 80px;
+	transition: all 0.7s ease 0s;
+	font-size: 18px;
+	color: #fff;
+}
+.box2:hover .box2Text4{
+	left: 20px;
+}
+.box3 img{
+	transition:  all 1s ease 0s;
+}
+.box3:hover img{
+	transform: translateY(-30px);/*纵向平移*/
+	opacity: 0.5;
+}
+.box3Text1{
+	color: #FFFFFF;
+	font-size: 18px;
+	position: absolute;
+	left: 50px;
+	top: -20px;
+	transition:  all 1s ease 0s;
+}
+.box3:hover .box3Text1{
+	top: 50px;
+}
+.box3Text2{
+	width: 200px;
+	position: absolute;
+	left: 50px;
+	top: 200px;
+	transition:  all 1s ease 0s;
+	opacity: 0;
+}
+.box3:hover .box3Text2{
+	opacity: 1;
+	top: 100px;
+}
+.rotateBox{
+	width: 600px;
+	height: 600px;
+	position: absolute;
+	left: 0px;
+	top: 300px;
+	background-color: #FFFFFF;
+	transition: all 2s ease 0s;
+	transform-origin: 0px 0px;
+}	
+.box4:hover .rotateBox{
+	transform: rotateZ(-20deg);
+	background-color: deepskyblue;
+}
+.rotateBox1{
+	position: absolute;
+	left: -100px;
+	top: 80px;
+	transition: all 0.7s ease 0s;
+	font-size: 18px;
+	color: #fff;
+}
+.box4:hover .rotateBox1{
+	left: 40px;
+}
+.borderBox{
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	left: 10%;
+	top: 10%;
+	border: 3px solid #000000;
+	box-sizing: border-box;/*怪异盒子*/
+	transition: all 4s ease 0s;
+	transform: translateY(-300px) rotateZ(0deg);
+	transform-origin: -10px 100px;
+}
+.box5:hover .borderBox{
+	transform: translateY(0px) rotateZ(360deg);
+}
+.borderBox1{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+    margin-bottom: 30px;
+	transition: all 0.7s ease 0s;
+	font-size: 18px;
+	color: #fff;
+}
+.box5:hover .borderBox1{
+	left: 10px;
+}
+.borderBox2{
+	position: absolute;
+	top: 50px;
+	left: 20px;
+	transition: all 0.7s ease 0s;
+}
+.box5:hover .borderBox2{
+	left: 30px;
+}
+.box6 img{
+	transition: all 0.5s ease 0s;
+}
+.box6:hover img{
+	transform: scale(2,2);
+	opacity: 0.5;
+}
+.box6Text{
+	font-size: 20px;
+	color: #FFFFFF;
+	position: absolute;
+	right: 30px;
+	top: 200px;
+	transition: all 1s ease 0s;
+}
+.box6:hover .box6Text{
+	transform: rotateZ(310deg);
+}
+.box7 img{
+	transition: all 0.5s ease 0s;
+}
+.box7:hover img{
+	transform: scale(0.8,0.8) rotateZ(10deg);
+	opacity: 0.5;
+}
+.box9 img{
+	transition: all 1s ease 0s;
+}
+.box9:hover img{
+	transform: scale(1.2,1.2) rotateZ(10deg);
+	opacity: 0.5;
+}
+.topLine{
+	height: 2px;
+	background-color: #FFFFFF;
+	width: 0px;
+	position: absolute;
+	left: 90px;
+	top: 40px;
+	transition: all 1s ease 0s;
+}
+.box8:hover .topLine{
+	width: 140px;
+}
+.leftLine{
+	width: 2px;
+	background-color: #FFFFFF;
+	height: 0px;
+	position: absolute;
+	left: 100px;
+	top: 30px;
+	transition: all 1s ease 0s;
+}
+.box8:hover .leftLine{
+	height: 120px;
+}
+.bottomLine{
+	height: 2px;
+	background-color: #FFFFFF;
+	width: 0px;
+	position: absolute;
+	right: 70px;
+	top: 140px;
+	transition: all 1s ease 0s;
+}
+.box8:hover .bottomLine{
+	width: 140px;
+}
+.rightLine{
+	width: 2px;
+	background-color: #FFFFFF;
+	height: 0px;
+	position: absolute;
+	right: 80px;
+	bottom: 150px;
+	transition: all 1s ease 0s;
+}
+.box8:hover .rightLine{
+	height: 120px;
+}
+.box8Text{
+	font-size: 16px;
+	font-weight: 900;
+	right: 90px;
+	top: 60px;
+	position: absolute;
+	transition: all 1s ease 0s;
+	transform: rotateZ(-180deg);
+	transform-origin: 60px -40px;
+
+}
+.box8:hover .box8Text{
+	transform:rotateZ(0deg);
+	}

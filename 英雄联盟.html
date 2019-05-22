@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>英雄联盟</title>
+		<style type="text/css">
+			html,body{padding: 0;margin: 0;}
+			.main{width: 100%;min-width: 1256px; height: 940px;
+			        background-image: url(img/yinxlm/bg.jpg);
+			        background-size:2000px 940px;position:relative;
+			        perspective: 500px;overflow:hidden;/*超出部分隐藏*/
+			}
+			.rotateBox{width: 706px;height: 740px;padding-top: 200px;
+			        margin: 0 auto;position: relative;transition: all 1s ease 0s;
+			}
+			.cupFather{width: 100%;height:740px;
+			               position: absolute;left: 0;top: 180px;
+			}
+			.cupIn{
+				width: 360px;height: 740px;margin: 0 auto;
+				 opacity: 0;transform: translateY(300px);transition: all 1s ease 0.5s;
+			}
+			.cup{width: 360px;height: 740px;
+			         background-image: url(img/yinxlm/cup_spr.png);
+			         background-size: 5760px 740px;
+			}
+			.beforeTextFather{
+				width: 100%;height: 122px;position: absolute;left: 0;bottom: 300px;
+			}
+			.beforeText{
+				width: 100%;height: 122px;background-size: 100% 100%;
+				background-image: url(img/yinxlm/index-title1.png);
+				opacity: 0;transform: translateY(300px);transition: all 1s ease 1s;
+			}
+			.moveArea{
+				position: absolute;left: 0;top: 0;width: 100%;height: 100%;
+				
+			}
+			.musicBtn{
+				animation: musicRotate 2s ease 0s infinite alternate;
+			}
+			@keyframes musicRotate{
+				0%{
+					transform: rotateZ(0deg);
+				}
+				50%{
+					transform: rotateZ(360deg);
+				}
+				100%{
+					transform: rotateZ(720deg);
+				}
+			}
+			.bofanqi{
+				float: right;padding-right: 20px;
+			}
+			.afterTextFather{
+				width: 100%;height: 68px;position: absolute;left: 0;top: 400px;	
+			}
+			.afterText{
+				width: 282px;height: 68px;background-size:100% 100%;margin: 0 auto;
+				background-image: url(img/yinxlm/index-title2.png);transform: translateY(300px);
+				opacity: 0;transition: all 1s ease 0s;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main" id="main">	
+			<div class="rotateBox" id="rotateBox">
+				<!--RISE-->
+				<div class="afterTextFather" id="afterTextFather">
+					<div class="afterText" id="afterText"></div>
+				</div>
+				
+				<!--奖杯-->
+				<div class="cupFather" id="cupFather">
+					<div class="cupIn" id="cupIn">
+						<div class="cup" id="cup"></div>
+					</div>
+				</div>
+				<!--登峰造极境-->
+				<div class="beforeTextFather" id="beforeTextFather">
+					<div class="beforeText" id="beforeText"></div>
+				</div>
+				
+			</div>
+			<div class="moveArea" id="moveArea">
+				<div class="bofanqi">
+			         <audio src="img/video/G.E.M.邓紫棋-光年之外.mp3" id='music'loop="loop"></audio>
+		             <img src="img/musicBtnOff.png" id='musicBtn'class="musicBtn" conteols="conteols"/>
+		        </div> 
+			</div>
+			
+		</div>
+		<script type="text/javascript">
+			let main=document.getElementById('main');
+			let cupFather=document.getElementById('cupFather');
+			let cupIn=document.getElementById('cupIn');
+			let cup=document.getElementById('cup');
+			let beforeTextFather=document.getElementById('beforeTextFather');
+			let beforeText=document.getElementById('beforeText');
+			let rotateBox=document.getElementById('rotateBox');
+			let afterTextFather=document.getElementById('afterTextFather');
+			let afterText=document.getElementById('afterText');
+			let moveArea=document.getElementById('moveArea');
+			let music=document.getElementById('music');
+			let musicBtn=document.getElementById('musicBtn');
+			main.style.backgroundPositionX=-(2000-main.offsetWidth)/2+'px';
+			window.onresize=function(){
+				main.style.backgroundPositionX=-(2000-main.offsetWidth)/2+'px';
+			}
+			let cupPositionX=0;
+			setInterval(function(){
+				if(cupPositionX<=-5760){
+					cupPositionX=0;
+				}
+				cupPositionX-=360;
+				cup.style.backgroundPositionX=cupPositionX+'px';
+			},100);//定时器
+			let cupLeft=0;
+			moveArea.onmousemove=function(e){
+				console.log(e.clientX);//鼠标的横向位置打印
+				cupLeft=-(e.clientX-moveArea.offsetWidth/2)*0.03;
+				cupFather.style.left=cupLeft+'px';//奖杯横向移动
+				beforeTextFather.style.left=-(e.clientX-moveArea.offsetWidth/2)*0.05+'px';//登峰造极境横向移动
+				afterTextFather.style.left=-(e.clientX-moveArea.offsetWidth/2)*0.04+'px';//RISE横向移动
+				if(e.clientX<=moveArea.offsetWidth/2){
+					rotateBox.style.transform='rotate3d(0,20,0,5deg)';
+				}else{
+					rotateBox.style.transform='rotate3d(0,20,0,-5deg)';
+				}
+			}//鼠标滑动
+			afterText.style.transform='translateY(0px)';
+			afterText.style.opacity=1;
+			beforeText.style.transform='translateY(0px)';
+			beforeText.style.opacity=1;
+			cupIn.style.transform='translateY(0px)';
+			cupIn.style.opacity=1;
+
+			musicBtn.onclick=function(){
+				if(music.paused){
+				    music.play(); //	播放
+					musicBtn.src="img/musicBtn.png";
+				}else{
+					music.pause(); //   停止
+					musicBtn.src='img/musicBtnOff.png';
+				}
+			}
+		</script>
+	</body>
+</html>
